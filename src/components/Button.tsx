@@ -7,12 +7,27 @@ import {
   Alert,
 } from "react-native";
 import handlePress from "./toolsFuctions/toolFunctions";
+import { ligthTheme, darkTheme } from "./toolsFuctions/themeColors";
 
-const Button = ({ value }: any) => {
+const Button = ({ value, setStateDisplay, stateTheme, setStateTheme }: any) => {
   return (
-    <View style={styles.box}>
-      <TouchableNativeFeedback   onPress={() => handlePress(value, Alert.alert)}>
-        <Text style={styles.text} >{value}</Text>
+    <View style={stateTheme ? styles.box : styles.boxDark}>
+      <TouchableNativeFeedback
+        onPress={
+          value === "☼" || value === "☽"
+            ? () => {
+                stateTheme ? setStateTheme(false) : setStateTheme(true);
+              }
+            : () => handlePress(value, Alert.alert)
+        }
+      >
+        <Text
+          style={
+            value === "☼" || value === "☽" ? styles.textSymbol : styles.text
+          }
+        >
+          {value}
+        </Text>
       </TouchableNativeFeedback>
     </View>
   );
@@ -20,25 +35,43 @@ const Button = ({ value }: any) => {
 
 const styles = StyleSheet.create({
   box: {
-    width: "24%",
+    width: "20%",
     height: "75%",
-  
+
     alignContent: "center",
     textAlign: "center",
     borderRadius: 100,
-    backgroundColor: "rgb(0, 210, 100)",
+    backgroundColor: ligthTheme.backgroundColorButton,
   },
-  text:{
-   alignContent: "center",
+  boxDark: {
+    width: "20%",
+    height: "75%",
+
+    alignContent: "center",
+    textAlign: "center",
+    borderRadius: 100,
+    backgroundColor: darkTheme.backgroundColorButton,
+  },
+  text: {
+    alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
     marginTop: "15%",
-  
+
     textAlign: "center",
-       color: "white",
-       fontSize: 25,
-       
-  }
+    color: "white",
+    fontSize: 25,
+  },
+  textSymbol: {
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "-1%",
+
+    textAlign: "center",
+    color: "white",
+    fontSize: 45,
+  },
 });
 
 export default Button;

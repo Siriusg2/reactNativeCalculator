@@ -10,45 +10,42 @@ import {
 } from "react-native";
 import handlePress from "./toolsFuctions/toolFunctions";
 import Button from "./Button";
+import { ligthTheme, darkTheme } from "./toolsFuctions/themeColors";
 
-const Buttons = () => {
-  const [theme, setTheme] = useState("ligth");
+const Buttons = ({setStateDisplay, stateTheme, setStateTheme}:any) => {
+  
   return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <Button value={"AC"}></Button>
-        <Button value={"+/-"}></Button>
-        <Button value={"%"}></Button>
-        <Button value={"÷"}></Button>
+    <View style={stateTheme   ? styles.container : styles.containerDark }>
+       <View style={stateTheme  ? styles.row : styles.rowDark }>
+        <Button value={!stateTheme  ? "☼" : "☽"}  stateTheme={stateTheme}setStateTheme={setStateTheme}/>
+        <Button value={"+/-"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"%"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"÷"}setStateDisplay={setStateDisplay}  stateTheme={stateTheme}/>
       </View>
-      <View style={styles.row}>
-        <Button value={"7"}></Button>
-        <Button value={"8"}></Button>
-        <Button value={"9"}></Button>
-        <Button value={"x"}></Button>
+      <View style={stateTheme ? styles.row : styles.rowDark }>
+        <Button value={"7"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"8"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"9"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"x"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
       </View>
-      <View style={styles.row}>
-        <Button value={"4"}></Button>
-        <Button value={"5"}></Button>
-        <Button value={"6"}></Button>
-        <Button value={"-"}></Button>
+       <View style={stateTheme   ? styles.row : styles.rowDark }>
+        <Button value={"4"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"5"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"6"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"-"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} />
       </View>
-      <View style={styles.row}>
-        <Button value={"1"}></Button>
-        <Button value={"2"}></Button>
-        <Button value={"3"}></Button>
-        <Button value={"+"}></Button>
+       <View style={stateTheme   ? styles.row : styles.rowDark }>
+        <Button value={"1"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"2"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"3"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} />
+        <Button value={"+"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
       </View>
-      <View style={styles.row}>
-        <Button value={"0"}></Button>
-        <Button value={"."}></Button>
-        <Button value={"="}></Button>
-      <Switch
-        value={theme === "ligth"}
-        onValueChange={() => {
-          setTheme(theme === "ligth" ? "dark" : "ligth");
-        }}
-      />
+       <View style={stateTheme  ? styles.row : styles.rowDark }>
+        <Button value={"AC"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"0"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"."} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+        <Button value={"="} setStateDisplay={setStateDisplay} stateTheme={stateTheme}/>
+  
       </View>
 
     
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
     marginHorizontal: "auto",
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
+    backgroundColor: ligthTheme.backgroundColorButtons,
     flexDirection: "column",
   
   
@@ -73,7 +70,28 @@ alignItems:"center"
     flexDirection: "row",
     alignItems: "center",
     justifyContent:"space-around", 
-    backgroundColor:"#fff",
+    backgroundColor: ligthTheme.backgroundColorButtons,
+    width: "100%",
+    height:"20%"
+    
+   
+  },
+  containerDark: {
+    flex: 4,
+    marginHorizontal: "auto",
+    width: "100%",
+    height: "100%",
+    backgroundColor: darkTheme.backgroundColorButtons,
+    flexDirection: "column",
+  
+  
+alignItems:"center"
+  },
+  rowDark: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent:"space-around", 
+    backgroundColor:darkTheme.backgroundColorButtons,
     width: "100%",
     height:"20%"
     
