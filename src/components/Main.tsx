@@ -7,13 +7,14 @@ import Display from './Display';
 
 const Main = ( ) => {
   const [theme, setTheme] = useState(false);
-  const  [display, setDisplay] = useState([0])
+  const  [display, setDisplay] = useState("0")
+  const  [record, setRecord] = useState([])
   
   return (
     <View style={theme ? styles.container : styles.containerDark }>
       
-      <Display displayState={display} stateTheme={theme}/>
-<Buttons setStateDisplay={setDisplay} stateTheme={theme} setStateTheme={setTheme}/>
+      <Display stateDisplay={display} recdordState = {record} stateTheme={theme}/>
+<Buttons setStateDisplay={setDisplay} stateTheme={theme} setStateTheme={setTheme} stateDisplay={display} recordState = {record} setRecordState = {setRecord}/>
 
     </View>
   );

@@ -2,10 +2,15 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { darkTheme, ligthTheme } from "./toolsFuctions/themeColors";
 
-const Display = ({displayState, stateTheme}:any) => {
+const Display = ({stateDisplay, stateTheme, recdordState}:any) => {
   return (
     <View style={stateTheme  ?  styles.container : styles.containerDark}>
-      <Text style={stateTheme  ?  styles.text : styles.textDark}>{displayState[0]}</Text>
+      {recdordState?.map((record:string) =>{
+        
+        <Text style={stateTheme  ?  styles.textRecord : styles.textDarkRecord}> {record} </Text>
+      })}
+        
+      <Text style={stateTheme  ?  styles.text : styles.textDark}>{ recdordState }</Text>
     </View>
   );
 };
@@ -31,6 +36,17 @@ borderBottomWidth: 1
     flexWrap:"wrap",
 
   },
+  textRecord: {
+    color: ligthTheme.textColorDisplay,
+    width: "100%",
+    alignSelf: "flex-end",
+    marginBottom:25,
+    justifyContent: "flex-end",
+    textAlign: "right",
+    fontSize: 40,
+    flexWrap:"wrap",
+
+  },
   containerDark: {
     flexDirection: "row",
     backgroundColor: darkTheme.backgroundColorButtons,
@@ -42,6 +58,17 @@ borderBottomWidth: 1
 
   },
   textDark: {
+    color: darkTheme.textColorDisplay,
+    width: "100%",
+    alignSelf: "flex-end",
+    marginBottom:25,
+    justifyContent: "flex-end",
+    textAlign: "right",
+    fontSize: 40,
+    flexWrap:"wrap",
+
+  },
+  textDarkRecord: {
     color: darkTheme.textColorDisplay,
     width: "100%",
     alignSelf: "flex-end",

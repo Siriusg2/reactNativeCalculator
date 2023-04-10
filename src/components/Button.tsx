@@ -9,7 +9,7 @@ import {
 import handlePress from "./toolsFuctions/toolFunctions";
 import { ligthTheme, darkTheme } from "./toolsFuctions/themeColors";
 
-const Button = ({ value, setStateDisplay, stateTheme, setStateTheme }: any) => {
+const Button = ({ value, setStateDisplay, stateTheme, setStateTheme, stateDisplay, recordState,setRecordState  }: any) => {
   return (
     <View style={stateTheme ? styles.box : styles.boxDark}>
       <TouchableNativeFeedback
@@ -18,12 +18,12 @@ const Button = ({ value, setStateDisplay, stateTheme, setStateTheme }: any) => {
             ? () => {
                 stateTheme ? setStateTheme(false) : setStateTheme(true);
               }
-            : () => handlePress(value, Alert.alert)
+            : () => handlePress(value, setStateDisplay, stateDisplay, recordState, setRecordState)
         }
       >
         <Text
           style={
-            value === "☼" || value === "☽" ? styles.textSymbol : styles.text
+            value !== "☼" && value !== "☽" ? styles.text : stateTheme ? styles.textSymbol : styles.textSymbolDark
           }
         >
           {value}
@@ -63,6 +63,16 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   textSymbol: {
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "-1%",
+
+    textAlign: "center",
+    color: "white",
+    fontSize: 45,
+  },
+  textSymbolDark: {
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
