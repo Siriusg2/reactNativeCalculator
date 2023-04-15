@@ -9,7 +9,7 @@ import {
 import handlePress from "./toolsFuctions/toolFunctions";
 import { ligthTheme, darkTheme } from "./toolsFuctions/themeColors";
 
-const Button = ({ value, setStateDisplay, stateTheme, setStateTheme, stateDisplay, recordState,setRecordState  }: any) => {
+const Button = ({ value, setStateDisplay, stateTheme, setStateTheme, stateDisplay  }: any) => {
   return (
     <View style={stateTheme ? styles.box : styles.boxDark}>
       <TouchableNativeFeedback
@@ -18,7 +18,7 @@ const Button = ({ value, setStateDisplay, stateTheme, setStateTheme, stateDispla
             ? () => {
                 stateTheme ? setStateTheme(false) : setStateTheme(true);
               }
-            : () => handlePress(value, setStateDisplay, stateDisplay, recordState, setRecordState)
+            : () => handlePress(value, setStateDisplay, stateDisplay)
         }
       >
         <Text

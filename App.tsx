@@ -5,16 +5,16 @@ import { StyleSheet, Text, View, Switch, Button } from "react-native";
 import Main from "./src/components/Main";
 
 export default function App() {
-  
+  const [theme, setTheme] = useState(false);
 
   return (
     <View style={styles.container} >
-      <StatusBar style="auto" />
+      <StatusBar style={theme ? "auto":"inverted"} />
 
 
    
   
-      <Main/>
+      <Main theme={theme} setTheme={setTheme}/>
     </View>
   );
 }

@@ -12,39 +12,39 @@ import handlePress from "./toolsFuctions/toolFunctions";
 import Button from "./Button";
 import { ligthTheme, darkTheme } from "./toolsFuctions/themeColors";
 
-const Buttons = ({setStateDisplay, stateTheme, setStateTheme, stateDisplay, recordState, setRecordState}:any) => {
+const Buttons = ({setStateDisplay, stateTheme, setStateTheme, stateDisplay}:any) => {
   
   return (
     <View style={stateTheme   ? styles.container : styles.containerDark }>
        <View style={stateTheme  ? styles.row : styles.rowDark }>
         <Button value={!stateTheme  ? "☼" : "☽"}  stateTheme={stateTheme}setStateTheme={setStateTheme}/>
-        <Button value={"+/-"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"%"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"÷"}setStateDisplay={setStateDisplay}  stateTheme={stateTheme} stateDisplay={stateDisplay} recordState={recordState} setRecordState={setRecordState}/>
+        <Button value={"+/-"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} />
+        <Button value={"%"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} />
+        <Button value={"÷"}setStateDisplay={setStateDisplay}  stateTheme={stateTheme} stateDisplay={stateDisplay} />
       </View>
       <View style={stateTheme ? styles.row : styles.rowDark }>
-        <Button value={"7"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"8"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"9"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"x"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
+        <Button value={"7"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} />
+        <Button value={"8"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay} />
+        <Button value={"9"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}/>
+        <Button value={"x"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
       </View>
        <View style={stateTheme   ? styles.row : styles.rowDark }>
-        <Button value={"4"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"5"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"6"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"-"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
+        <Button value={"4"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"5"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"6"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"-"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}/>
       </View>
        <View style={stateTheme   ? styles.row : styles.rowDark }>
-        <Button value={"1"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"2"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"3"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"+"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
+        <Button value={"1"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"2"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"3"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}/>
+        <Button value={"+"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
       </View>
        <View style={stateTheme  ? styles.row : styles.rowDark }>
-        <Button value={"AC"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"0"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"."} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
-        <Button value={"="} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}recordState={recordState} setRecordState={setRecordState}/>
+        <Button value={"AC"} setStateDisplay={setStateDisplay} stateTheme={stateTheme} stateDisplay={stateDisplay}/>
+        <Button value={"0"} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"."} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
+        <Button value={"="} setStateDisplay={setStateDisplay} stateTheme={stateTheme}stateDisplay={stateDisplay}/>
   
       </View>
 

@@ -5,16 +5,16 @@ import Display from './Display';
 
 
 
-const Main = ( ) => {
-  const [theme, setTheme] = useState(false);
-  const  [display, setDisplay] = useState("0")
-  const  [record, setRecord] = useState([])
+const Main = ( {theme, setTheme}:any) => {
+
+  const  [display, setDisplay] = useState({record:[], display:"", operator:""})
+
   
   return (
     <View style={theme ? styles.container : styles.containerDark }>
       
-      <Display stateDisplay={display} recdordState = {record} stateTheme={theme}/>
-<Buttons setStateDisplay={setDisplay} stateTheme={theme} setStateTheme={setTheme} stateDisplay={display} recordState = {record} setRecordState = {setRecord}/>
+      <Display stateDisplay={display}  stateTheme={theme}/>
+<Buttons setStateDisplay={setDisplay} stateTheme={theme} setStateTheme={setTheme} stateDisplay={display}/>
 
     </View>
   );
