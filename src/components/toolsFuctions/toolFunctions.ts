@@ -12,22 +12,49 @@ const handlePress = (value: string, setState: Function, state: any) => {
     case "7":
     case "8":
     case "9":
-      flag = true;
+    
 
      
 
       while (flag) {
+        
         flag = false;
+        
+        if (state.operator && !state.display) {
+  
+     
+          setState((prevState:any) => {
+            const newRecord = [...prevState.record]; // Crear una copia del array record
+            newRecord.push(value); // Agregar el nuevo elemento al final del array
+            const newDisplay = add(newRecord.at(-3), newRecord.at(-1))
 
-        setState({
-          ...state,
-          record: [...state.record, value],
-          display: state.display + value,
-        });
-
-        if (state.operator === "+" && state.record.legth > 2) {
-          const result = add(parseInt(state.record.at(-3)), parseInt(state.record.at(-1)));
-          setState({ ...state, display: add(parseInt(state.record.at(-3)), parseInt(state.record.at(-1))) });
+            
+            return {...prevState, record: newRecord, display: newDisplay}; // Retornar un nuevo objeto con el nuevo array record
+          });
+        
+        }
+        else if(state.operator && state.display ){
+          let totalDisplay = state.display
+          setState((prevState:any) => {
+            const newRecord = [...prevState.record]; // Crear una copia del array record
+            newRecord.push(value); // Agregar el nuevo elemento al final del array
+            let newDisplay  
+        if(state.operator === "+") newDisplay = add(totalDisplay, newRecord.at(-1))
+        if(state.operator === "-") newDisplay = sustract(totalDisplay, newRecord.at(-1))
+        if(state.operator === "x") newDisplay = multiply(totalDisplay, newRecord.at(-1))
+        if(state.operator === "÷") newDisplay = split(totalDisplay, newRecord.at(-1))
+            
+            return {...prevState, record: newRecord, display: newDisplay}; // Retornar un nuevo objeto con el nuevo array record
+          });
+        }
+        else{
+          setState({
+            ...state,
+            record: [...state.record, value],
+            display: state.display + value,
+          });
+      
+  
         }
       }
       break;
@@ -35,13 +62,14 @@ const handlePress = (value: string, setState: Function, state: any) => {
     case "-":
     case "x":
     case "÷":
+ 
       if (!isNaN(parseInt(state.record.at(-1)))) {
         setState({
           ...state,
           operator: value,
           record: [...state.record, value],
         });
-        flag = false;
+      
       }
       else {
         setState((prevState:any) => {
@@ -50,7 +78,7 @@ const handlePress = (value: string, setState: Function, state: any) => {
           newRecord.push(value); // Agregar el nuevo elemento al final del array
           return {...prevState, record: newRecord, operator: value}; // Retornar un nuevo objeto con el nuevo array record
         });
-        flag = false;
+      
       }
 
       break;
@@ -71,38 +99,30 @@ const handlePress = (value: string, setState: Function, state: any) => {
   }
 };
 
-const add = (num1: number = 0, num2: number = 0) => {
+const add = (num1: string , num2: string ) => {
 
-  isNaN(num1) ? (num1 = 0) : null;
-  isNaN(num2) ? (num2 = 0) : null;
-  let result = num1 + num2;
-  return result
+  let result = parseInt(num1, 10) + parseInt(num2, 10);
+  
+  
+  
+  return result.toString();
 };
-const sustract = (num1: string = "0", num2: string = "0") => {
-  let numone = parseInt(num1);
-  let numtwo = parseInt(num2);
-  isNaN(numone) ? (numone = 0) : null;
-  isNaN(numtwo) ? (numtwo = 0) : null;
-  let result = numone - numtwo;
-
+const sustract = (num1: string , num2: string ) => {
+  
+  let result = parseInt(num1, 10) - parseInt(num2, 10);
+  
   return result.toString();
 };
 const multiply = (num1: string = "0", num2: string = "0") => {
-  let numone = parseInt(num1);
-  let numtwo = parseInt(num2);
-  isNaN(numone) ? (numone = 0) : null;
-  isNaN(numtwo) ? (numtwo = 0) : null;
-  let result = numone * numtwo;
-
+  let result = parseInt(num1, 10) * parseInt(num2, 10);
+  
   return result.toString();
 };
 const split = (num1: string = "0", num2: string = "0") => {
-  let numone = parseInt(num1);
-  let numtwo = parseInt(num2);
-  isNaN(numone) ? (numone = 0) : null;
-  isNaN(numtwo) ? (numtwo = 0) : null;
-  let result = numone / numtwo;
+  let result = parseInt(num1, 10) / parseInt(num2, 10);
+  
   return result.toString();
+ 
 };
 
 export default handlePress;
