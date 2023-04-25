@@ -12,49 +12,40 @@ const handlePress = (value: string, setState: Function, state: any) => {
     case "7":
     case "8":
     case "9":
-    
-
-     
-
       while (flag) {
-        
         flag = false;
-        
-        if (state.operator && !state.display) {
-  
-     
-          setState((prevState:any) => {
-            const newRecord = [...prevState.record]; // Crear una copia del array record
-            newRecord.push(value); // Agregar el nuevo elemento al final del array
-            const newDisplay = add(newRecord.at(-3), newRecord.at(-1))
 
-            
-            return {...prevState, record: newRecord, display: newDisplay}; // Retornar un nuevo objeto con el nuevo array record
-          });
-        
-        }
-        else if(state.operator && state.display ){
-          let totalDisplay = state.display
-          setState((prevState:any) => {
+        if (state.operator && !state.display) {
+          setState((prevState: any) => {
             const newRecord = [...prevState.record]; // Crear una copia del array record
             newRecord.push(value); // Agregar el nuevo elemento al final del array
-            let newDisplay  
-        if(state.operator === "+") newDisplay = add(totalDisplay, newRecord.at(-1))
-        if(state.operator === "-") newDisplay = sustract(totalDisplay, newRecord.at(-1))
-        if(state.operator === "x") newDisplay = multiply(totalDisplay, newRecord.at(-1))
-        if(state.operator === "÷") newDisplay = split(totalDisplay, newRecord.at(-1))
-            
-            return {...prevState, record: newRecord, display: newDisplay}; // Retornar un nuevo objeto con el nuevo array record
+            const newDisplay = add(newRecord.at(-3), newRecord.at(-1));
+
+            return { ...prevState, record: newRecord, display: newDisplay }; // Retornar un nuevo objeto con el nuevo array record
           });
-        }
-        else{
+        } else if (state.operator && state.display && !state.record.at(-1).includes(".")) {
+          let totalDisplay = state.display;
+          setState((prevState: any) => {
+            const newRecord = [...prevState.record]; // Crear una copia del array record
+            newRecord.push(value); // Agregar el nuevo elemento al final del array
+            let newDisplay;
+            if (state.operator === "+")
+              newDisplay = add(totalDisplay, newRecord.at(-1));
+            if (state.operator === "-")
+              newDisplay = sustract(totalDisplay, newRecord.at(-1));
+            if (state.operator === "x")
+              newDisplay = multiply(totalDisplay, newRecord.at(-1));
+            if (state.operator === "÷")
+              newDisplay = split(totalDisplay, newRecord.at(-1));
+
+            return { ...prevState, record: newRecord, display: newDisplay }; // Retornar un nuevo objeto con el nuevo array record
+          });
+        } else {
           setState({
             ...state,
             record: [...state.record, value],
             display: state.display + value,
           });
-      
-  
         }
       }
       break;
@@ -62,33 +53,59 @@ const handlePress = (value: string, setState: Function, state: any) => {
     case "-":
     case "x":
     case "÷":
- 
-      if (!isNaN(parseInt(state.record.at(-1)))) {
+      if (!isNaN(parseFloat(state.record.at(-1)))) {
         setState({
           ...state,
           operator: value,
           record: [...state.record, value],
         });
-      
-      }
-      else {
-        setState((prevState:any) => {
+      } else {
+        setState((prevState: any) => {
           const newRecord = [...prevState.record]; // Crear una copia del array record
           newRecord.pop(); // Remover el último elemento del array
           newRecord.push(value); // Agregar el nuevo elemento al final del array
-          return {...prevState, record: newRecord, operator: value}; // Retornar un nuevo objeto con el nuevo array record
+          return { ...prevState, record: newRecord, operator: value }; // Retornar un nuevo objeto con el nuevo array record
         });
-      
       }
 
       break;
 
     case "=":
       setState({ ...state, operator: "" });
-      flag = false;
+
       break;
 
     case "+/-":
+    case ".":
+   
+      if (!state.display.includes(value)) {
+        setState((prevState: any) => {
+          let newRecord = [...prevState.record];
+          let newValue = newRecord.pop();
+        
+          
+          newValue = newValue + value;
+        
+          newRecord.push(newValue);
+          return {
+            ...prevState,
+            record: newRecord,
+            display: state.display + value,
+          };
+        });
+      } else if (!state.record.includes(value)) {
+        setState((prevState: any) => {
+          let newRecord = [...prevState.record];
+          let newValue = newRecord.pop();
+    
+          
+          newValue = newValue + value;
+   
+          newRecord.push(newValue);
+          return { ...prevState, record: newRecord };
+        });
+      }
+      break;
     case "%":
       break;
     case "AC":
@@ -99,30 +116,25 @@ const handlePress = (value: string, setState: Function, state: any) => {
   }
 };
 
-const add = (num1: string , num2: string ) => {
+const add = (num1: string, num2: string) => {
+  let result = parseFloat(num1) + parseFloat(num2);
 
-  let result = parseInt(num1, 10) + parseInt(num2, 10);
-  
-  
-  
   return result.toString();
 };
-const sustract = (num1: string , num2: string ) => {
-  
-  let result = parseInt(num1, 10) - parseInt(num2, 10);
-  
+const sustract = (num1: string, num2: string) => {
+  let result = parseFloat(num1) - parseFloat(num2);
+
   return result.toString();
 };
 const multiply = (num1: string = "0", num2: string = "0") => {
-  let result = parseInt(num1, 10) * parseInt(num2, 10);
-  
+  let result = parseFloat(num1) * parseFloat(num2);
+
   return result.toString();
 };
 const split = (num1: string = "0", num2: string = "0") => {
-  let result = parseInt(num1, 10) / parseInt(num2, 10);
-  
+  let result = parseFloat(num1) / parseFloat(num2);
+
   return result.toString();
- 
 };
 
 export default handlePress;
